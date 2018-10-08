@@ -1,0 +1,24 @@
+server:
+  port: 8036
+
+spring:
+  application:
+    name: icreader
+  http:
+    encoding:
+      force: true
+      enabled: true
+      charset: UTF-8
+  multipart:
+      max-request-size: 30MB
+      max-file-size: 30MB
+      enabled: true
+  main:
+      banner-mode: "off"
+  data:
+    mongodb:
+      uri: mongodb://172.20.100.208:27017
+      database: icreader
+
+applog:
+  path: D:/logs/icreader
