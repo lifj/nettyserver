@@ -7,6 +7,7 @@
   <groupId>com.lfj.nettyserver</groupId>
   <artifactId>icreader</artifactId>
   <version>1.0</version>
+  <packaging>jar</packaging>
 
   <name>icreader</name>
 
@@ -78,6 +79,33 @@
           <skip>true</skip>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>com.lfj.nettyserver.IcReaderApplication</mainClass>
+          <outputDirectory>src/main/docker</outputDirectory>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.4.11</version>
+        <configuration>
+          <imageName>${project.artifactId}</imageName>
+          <dockerDirectory>src/main/docker</dockerDirectory>
+          <resources>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.build.directory}</directory>
+              <include>${project.build.finalName}.jar</include>
+            </resource>
+          </resources>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
